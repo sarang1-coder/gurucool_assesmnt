@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 import {createBrowserRouter as Router,RouterProvider,Outlet, Route } from "react-router-dom"
 import Main from './components/Body/Main';
 import Login from './components/authetication/Login';
@@ -10,6 +12,7 @@ import Cart from './components/Carts/Cart';
 import Item from './components/Carts/Item';
 import CartList from './components/Carts/CartList';
 import Error from './components/pages/Error';
+import About from './components/pages/About';
 
 const appRouter=Router([
   {
@@ -23,6 +26,10 @@ const appRouter=Router([
       {
         path:'/home',
         element:<Home/>
+      },
+      {
+        path:'/about',
+        element:<About/>
       },
       {
         path:'/cart',
