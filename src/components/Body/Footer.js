@@ -104,7 +104,7 @@ margin-right : 5.2rem;
 const Footer = () => {
   return (
     <>
-    <AppBox>
+    <AppBox style={{width:'91%'}}>
       <Box sx={{alignItems:'center'}}>
         <Typography>For better experience,download the app now</Typography>
       </Box>

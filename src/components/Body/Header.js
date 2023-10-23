@@ -1,17 +1,22 @@
-import React from 'react'
+import React, { useContext ,useEffect} from 'react'
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
+import { useNavigate,NavLink } from 'react-router-dom';
+import { firebaseAuth } from '../../utils/firebase';
+import { signOut } from 'firebase/auth';
 import {Box,styled,AppBar,Toolbar,Typography,Button} from "@mui/material";
 import PersonIcon from '@mui/icons-material/Person';
 import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
 import Logo from "../../assets/logo.png";
+import UserContext from '../../utils/userContext';
 
-import { NavLink } from 'react-router-dom';
+
 
 const HeaderBox=styled(Toolbar)`
     display:flex;
     justify-content:space-between;
     align-items: center;
     width: 100%;
+    margin:0;
     background-color:#DEF257;
     height : 14vh;
     background-image: linear-gradient(to top, rgba(238,194,174,0) 0%, rgba(230,99,103,0.3) 100%);
@@ -165,6 +170,29 @@ font-weight : bolder;
 
 const Header = () => {
 
+  const {loggedInUser} = useContext(UserContext);
+
+
+    useEffect(() => {
+    console.log("UseEffect Called")
+  }, [])
+
+  const navigate = useNavigate()
+  
+
+  const handleSignOut = async (e) => {
+    e.preventDefault();
+    
+    try {
+      await signOut(firebaseAuth)
+      navigate('/')
+      
+    } catch (error) {
+      navigate('/error')
+    }
+  }
+  
+
   const navLinkStyle = ({ isActive }) => {
     return {
       color: isActive ? 'grey' : '',
@@ -176,11 +204,12 @@ const Header = () => {
 
 
   return (
+
+
     <HeaderBox>
 
-
       <LogoBar>
-        <img src={Logo} alt='app_logo' />
+        <img src={Logo} alt='app_logo' onClick={()=>navigate('/home')} />
         <HeadingBox>
           <Typography variant="body1" sx={{ fontSize: { xs: '20px', md: '26px' } }}>
             FOOD NATION
@@ -222,14 +251,13 @@ const Header = () => {
       </NavItems>
 
       <LogOutUserBox>
-
-
         <LoggedOutBox>
           <PersonIcon style={{fontSize:'3rem'}}/>
+          {loggedInUser}
         </LoggedOutBox>
 
 
-        <ButtonBox>
+        <ButtonBox onClick={handleSignOut}>
             LOGOUT
               <PowerSettingsNewIcon
                 sx={{
@@ -238,7 +266,6 @@ const Header = () => {
                 }}
                 />
         </ButtonBox>
-
       </LogOutUserBox>
     </HeaderBox>
   )
