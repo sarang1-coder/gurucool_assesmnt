@@ -1,0 +1,11 @@
+.dialog-container {
+  position: relative;
+  justify-content: center;
+  align-items: center;
+}
+
+.close-button {
+  position: absolute;
+  top: 0;
+  left: 0;
+}

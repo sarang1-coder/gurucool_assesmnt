@@ -12,6 +12,8 @@ import CartList from './components/Carts/CartList';
 import Error from './components/pages/Error';
 import About from './components/pages/About';
 
+
+
 const appRouter=Router([
   {
     path:'/',
@@ -24,10 +26,6 @@ const appRouter=Router([
       {
         path:'/home',
         element:<Home/>
-      },
-      {
-        path:'/about',
-        element:<About/>
       },
       {
         path:'/cart',
