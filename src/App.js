@@ -2,7 +2,7 @@ import React,{useState,useEffect} from 'react';
 import { Box } from '@mui/material'
 import { Outlet } from 'react-router-dom';
 import UserContext from './utils/userContext';
-import { Provider } from 'react';
+import { Provider } from 'react-redux';
 import appStore from './store/appStore';
 
 

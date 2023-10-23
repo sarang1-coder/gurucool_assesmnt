@@ -257,7 +257,7 @@ const Header = () => {
         </LoggedOutBox>
 
 
-        <ButtonBox onClick={handleSignOut}>
+        {/* <ButtonBox onClick={handleSignOut}>
             LOGOUT
               <PowerSettingsNewIcon
                 sx={{
@@ -265,7 +265,8 @@ const Header = () => {
                   fontSize: '18px',
                 }}
                 />
-        </ButtonBox>
+        </ButtonBox> */}
+        <NavLink to="/home">HOME</NavLink>
       </LogOutUserBox>
     </HeaderBox>
   )
