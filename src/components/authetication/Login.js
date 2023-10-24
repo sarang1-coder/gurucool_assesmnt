@@ -296,8 +296,7 @@ const Login = () => {
 
   const email = useRef(null)
   const password = useRef(null)
-  // I want to refer this email and password to my textfields
-  
+
   const handleUserNameChange = (e) => {
     setuserName(e.target.value);
   };

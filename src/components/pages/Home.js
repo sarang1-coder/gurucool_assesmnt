@@ -11,7 +11,7 @@ import 'react-multi-carousel/lib/styles.css';
 import {apiKey,apiUrl} from "../../utils/Constants";
 import "../../assets/styles/home.css";
 import Dialog from './Dialog';
-
+import RecipeUsedIngredientsTable from "./RecipeIngridentTable";
 
 
 const ImageContainer=styled(Box)`
@@ -78,13 +78,23 @@ const Home = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
   const [selectedImageInfo, setSelectedImageInfo] = useState('');
+  const [selectedTitle, setSelectedTitle] = useState('');
+  const [selectedLikes, setSelectedLikes] = useState('');
+  const [selectedId, setSelectedId] = useState(null);
+  const [selectedUsedIngredients, setSelectedUsedIngredients] = useState([]);
+
+
 
   // Function to open the dialog with image info
-  const openDialog = (imageSrc, imageInfo) => {
-    setSelectedImage(imageSrc);
-    setSelectedImageInfo(imageInfo);
-    setIsDialogOpen(true);
-  };
+const openDialog = (imageSrc, id, usedIngredients, title, likes) => {
+  setSelectedImage(imageSrc);
+  setSelectedTitle(title);
+  setSelectedLikes(likes);
+  setSelectedId(id);
+  setSelectedUsedIngredients(usedIngredients);
+  setIsDialogOpen(true);
+};
+
 
   const closeDialog = () => {
     setSelectedImage(null);
@@ -94,18 +104,22 @@ const Home = () => {
 
 
 
+
+
   const dispatch = useDispatch();
 
   const cart=useSelector((e)=>e.items)
 
   console.log("cart",cart)
 
+  console.log("cart1",recipes[0].usedIngredients);
 
-  // Inside your component where you want to add an item to the cart
-const handleAddToCart = (item) => {
-  // Dispatch the addToCart action with the item data
-  dispatch(addToCart(item));
-};
+  console.log("d",selectedUsedIngredients)
+  
+
+  const handleAddToCart = (item) => {
+    dispatch(addToCart(item));
+  };
 
 
 
@@ -126,7 +140,7 @@ const handleAddToCart = (item) => {
       })
       .then((response) => {
         setRecipes(response.data);
-        console.log(response.data);
+        console.log("info",response.data);
         setLoading(false);
       })
       .catch((error) => {
@@ -170,19 +184,25 @@ const handleAddToCart = (item) => {
           SEARCH
         </motion.button>
       </div>
-      <div style={{margin:'1rem'}}>
-          {loading ? (
+  <div style={{margin:'1rem'}}>
+    {
+    loading ? 
+      (
         <h1>Loading...</h1>
-      ) : error ? (
+      ) 
+      : error ? 
+      (
         <p>{error}</p>
-      ) : (
+      ) 
+      : 
+      (
       <Carousel responsive={responsive}>
         {recipes.map((recipe) => (
           <div key={recipe.id} className="image-container" style={{ position: 'relative' }}>
             <motion.img 
               src={recipe.image} 
               alt="image"
-              onClick={() => openDialog(recipe.image)} />
+              onClick={() => openDialog(recipe.image,recipe.title,recipe.likes,recipe.usedIngredients)} />
                 <CartButtonContainer>
                   <AddToCartBox>
                     <IconButton
@@ -195,8 +215,9 @@ const handleAddToCart = (item) => {
                   </AddToCartBox>
                 </CartButtonContainer>
                 <div className="title-box">
-                  <h3 className="title-over-image">{recipe.title}</h3>
-                  <h3>{recipe.likes}</h3>
+                  <h3 className="title-over-image">
+                    {recipe.title}
+                  </h3>
                 </div>
               </div>
         ))}
@@ -204,12 +225,15 @@ const handleAddToCart = (item) => {
       )}
       </div>
 
-      <Dialog
-        isOpen={isDialogOpen}
-        onClose={closeDialog}
-        imageSrc={selectedImage}
-        imageInfo={selectedImageInfo}
-      />
+    <Dialog
+      isOpen={isDialogOpen}
+      onClose={closeDialog}
+      imageSrc={selectedImage}
+      title={selectedTitle}
+      likes={selectedLikes}
+      id={selectedId}
+      usedIngredients={selectedUsedIngredients} 
+    />
 
     </>
   )
