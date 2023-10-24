@@ -5,6 +5,7 @@ import "../../assets/styles/dialog.css";
 const Dialog = ({ isOpen, onClose, imageSrc }) => {
   return (
     <>
+    {
       isOpen && (
       <div className="dialog-container">
         <button className="close-button" onClick={onClose}>
@@ -14,7 +15,7 @@ const Dialog = ({ isOpen, onClose, imageSrc }) => {
           <img src={imageSrc} alt="Image" />
         </div>
       </div>
-    )
+    )}
     </>
   );
 };

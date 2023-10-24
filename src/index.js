@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
+import store from "./store/appStore"
 import {createBrowserRouter as Router,RouterProvider,Outlet, Route } from "react-router-dom"
 import Main from './components/Body/Main';
 import Login from './components/authetication/Login';
@@ -11,6 +12,7 @@ import Item from './components/Carts/Item';
 import CartList from './components/Carts/CartList';
 import Error from './components/pages/Error';
 import About from './components/pages/About';
+import { Provider } from 'react-redux';
 
 
 
@@ -50,6 +52,11 @@ const appRouter=Router([
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <RouterProvider router={appRouter}/>
+  <Provider store={store}>
+    <RouterProvider router={appRouter}>
+      <App />
+    </RouterProvider>
+  </Provider>
 );
+
 

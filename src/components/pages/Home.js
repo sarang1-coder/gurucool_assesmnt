@@ -1,6 +1,8 @@
 import React,{useState,useEffect} from 'react';
 import axios from "axios";
 import { motion } from 'framer-motion';
+import {useDispatch,useSelector} from "react-redux"
+import {addToCart} from "../../store/cartslice";
 import { useNavigate } from 'react-router-dom';
 import {Box,styled,AppBar,Toolbar,Typography,Button} from "@mui/material";
 import { ShoppingCart as ShoppingCartIcon } from '@mui/icons-material';
@@ -91,6 +93,23 @@ const Home = () => {
   };
 
 
+
+  const dispatch = useDispatch();
+
+  const cart=useSelector((e)=>e.items)
+
+  console.log("cart",cart)
+
+
+  // Inside your component where you want to add an item to the cart
+const handleAddToCart = (item) => {
+  // Dispatch the addToCart action with the item data
+  dispatch(addToCart(item));
+};
+
+
+
+
   const navigate=useNavigate();
 
   
@@ -168,6 +187,7 @@ const Home = () => {
                   <AddToCartBox>
                     <IconButton
                       color="primary"
+                      onClick={()=>handleAddToCart(recipe)}
                     >
                       <ShoppingCartIcon />
                       ADD TO CART
