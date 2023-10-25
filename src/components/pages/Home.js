@@ -11,7 +11,6 @@ import 'react-multi-carousel/lib/styles.css';
 import {apiKey,apiUrl} from "../../utils/Constants";
 import "../../assets/styles/home.css";
 import Dialog from './Dialog';
-import RecipeUsedIngredientsTable from "./RecipeIngridentTable";
 
 
 const ImageContainer=styled(Box)`
@@ -36,11 +35,11 @@ const AddToCartBox = styled(Box)`
 
 const IconButton = styled(Button)`
   && {
-    padding: 5px; /* Adjust the size as needed */
-    font-size: 0.8rem; /* Adjust the font size as needed */
+    padding: 5px; 
+    font-size: 0.8rem; 
   }
   &&:hover {
-    background-color: #007bff; /* Change the background color on hover */
+    background-color: #007bff; 
     color: white;
   }
 `;
@@ -49,7 +48,6 @@ const Home = () => {
 
   const responsive = {
   superLargeDesktop: {
-    // the naming can be any, depends on you.
     breakpoint: { max: 4000, min: 3000 },
     items: 5
   },
@@ -80,18 +78,14 @@ const Home = () => {
   const [selectedImageInfo, setSelectedImageInfo] = useState('');
   const [selectedTitle, setSelectedTitle] = useState('');
   const [selectedLikes, setSelectedLikes] = useState('');
-  const [selectedId, setSelectedId] = useState(null);
-  const [selectedUsedIngredients, setSelectedUsedIngredients] = useState([]);
 
 
 
   // Function to open the dialog with image info
-const openDialog = (imageSrc, id, usedIngredients, title, likes) => {
+const openDialog = (imageSrc, title, likes) => {
   setSelectedImage(imageSrc);
   setSelectedTitle(title);
   setSelectedLikes(likes);
-  setSelectedId(id);
-  setSelectedUsedIngredients(usedIngredients);
   setIsDialogOpen(true);
 };
 
@@ -112,10 +106,7 @@ const openDialog = (imageSrc, id, usedIngredients, title, likes) => {
 
   console.log("cart",cart)
 
-  console.log("cart1",recipes[0].usedIngredients);
 
-  console.log("d",selectedUsedIngredients)
-  
 
   const handleAddToCart = (item) => {
     dispatch(addToCart(item));
@@ -202,7 +193,7 @@ const openDialog = (imageSrc, id, usedIngredients, title, likes) => {
             <motion.img 
               src={recipe.image} 
               alt="image"
-              onClick={() => openDialog(recipe.image,recipe.title,recipe.likes,recipe.usedIngredients)} />
+              onClick={() => openDialog(recipe.image,recipe.title,recipe.likes)} />
                 <CartButtonContainer>
                   <AddToCartBox>
                     <IconButton
@@ -231,8 +222,6 @@ const openDialog = (imageSrc, id, usedIngredients, title, likes) => {
       imageSrc={selectedImage}
       title={selectedTitle}
       likes={selectedLikes}
-      id={selectedId}
-      usedIngredients={selectedUsedIngredients} 
     />
 
     </>
