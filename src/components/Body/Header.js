@@ -8,7 +8,7 @@ import PersonIcon from '@mui/icons-material/Person';
 import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
 import Logo from "../../assets/logo.png";
 import UserContext from '../../utils/userContext';
-
+import { useSelector } from 'react-redux';
 
 
 const HeaderBox=styled(Toolbar)`
@@ -170,6 +170,10 @@ font-weight : bolder;
 
 const Header = () => {
 
+
+  const cart=useSelector((e)=>e.items);
+
+
   const {loggedInUser} = useContext(UserContext);
 
 
@@ -228,11 +232,6 @@ const Header = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink style={navLinkStyle} to="/about">
-                ABOUT
-            </NavLink>
-          </li>
-          <li>
             <NavLink style={navLinkStyle} to="/cart">
               <MainBox>
                 <Box>CART</Box>
@@ -240,7 +239,9 @@ const Header = () => {
                     <ShoppingBasketIcon/>
                     <CartItemBox>
                       <Item>
-                        3
+                        {
+                          cart.length
+                        }
                       </Item> 
                     </CartItemBox> 
                   </CartBox>

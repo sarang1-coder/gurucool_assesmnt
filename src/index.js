@@ -8,10 +8,8 @@ import Main from './components/Body/Main';
 import Login from './components/authetication/Login';
 import Home from './components/pages/Home';
 import Cart from './components/Carts/Cart';
-import Item from './components/Carts/Item';
-import CartList from './components/Carts/CartList';
 import Error from './components/pages/Error';
-import About from './components/pages/About';
+import NotFound from './components/pages/NotFound';
 import { Provider } from 'react-redux';
 
 
@@ -34,17 +32,14 @@ const appRouter=Router([
         element:<Cart/>
       },
       {
-        path:'/item_list',
-        element:<CartList/>
-      },
-      {
-        path:'/items/:id',
-        element:<Item/>
-      },
-      {
         path:'/error',
         element:<Error/>
-      }
+      },
+       {
+        // Catch-all route for any other URLs
+        path: '*',
+        element: <NotFound />, // Replace with your error component or "Not Found" page
+      },
     ]
   }
 ])
