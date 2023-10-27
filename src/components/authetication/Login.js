@@ -442,7 +442,7 @@ const Login = () => {
             }
 
             <TextField
-              inputRef={email}   // inputRef: This is a specific prop used with certain material UI components. So, this email is reference to this textfield
+              inputRef={email}   
               type='email'
               variant='filled'
               color = 'warning'
@@ -451,7 +451,7 @@ const Login = () => {
             </TextField>
         
             <TextField
-              inputRef={password}   // this password is reference to this textfield
+              inputRef={password}   
               type='password'
               color = 'warning'
               variant='filled'
