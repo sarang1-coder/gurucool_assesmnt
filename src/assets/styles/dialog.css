@@ -6,9 +6,9 @@
   height: 100%;
   background: rgba(0, 0, 0, 0.6);
   display: flex;
-  justify-content: center; /* Horizontally center */
-  align-items: center; /* Vertically center */
-  z-index: 999; /* Ensure it appears on top of other content */
+  justify-content: center; 
+  align-items: center; 
+  z-index: 999; 
 }
 
 .dialog-content {
@@ -29,6 +29,6 @@
   cursor: pointer;
   background-color: blue;
   border-radius: .2rem;
-  color: rgb(236, 233, 233); /* Add a color that contrasts with the background */
-  z-index: 1000; /* Make sure it's above other elements */
+  color: rgb(236, 233, 233); 
+  z-index: 1000; 
 }
