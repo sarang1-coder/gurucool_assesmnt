@@ -1,11 +1,11 @@
-/* Example CSS */
+
 .image-container {
   position: relative;
 }
 
 .image-container img {
-  width: 80%; /* Ensure the image takes the full width of the container */
-  height: auto; /* Maintain the image's aspect ratio */
+  width: 80%; 
+  height: auto; 
   border-radius: 1rem;
 }
 
@@ -19,13 +19,13 @@
   color: white;
   padding: 10px;
   z-index: 1;
-  text-align: center; /* Center-align the title */
-  width: 40%; /* Adjust the width as needed */
+  text-align: center;
+  width: 40%; 
 }
 
 .title-over-image {
-  font-size: 1.2rem; /* Set the font size for the title */
-  margin: 0; /* Remove default margin for the title */
+  font-size: 1.2rem; 
+  margin: 0; 
 }
 
 .addToCart{
