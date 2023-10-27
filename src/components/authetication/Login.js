@@ -381,7 +381,7 @@ const Login = () => {
                 <LoggedOutBox>
                   <PersonIcon/>
                   {
-                    !issignin ? (loggedInUser) : "User" 
+                    issignin ? (loggedInUser) : "User" 
                   }
                 </LoggedOutBox>
               </li>
